@@ -1,0 +1,15 @@
+# Sistema de Gerenciamento de Vendas
+*.sql
+*.log
+*.tmp
+*.bak
+
+# Pastas de ambiente e cache
+.env
+.vscode/
+__pycache__/
+
+# Arquivos temporários
+*.swp
+*.swo
+.DS_Store
