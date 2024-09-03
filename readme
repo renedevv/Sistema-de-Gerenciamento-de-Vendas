@@ -1,0 +1,26 @@
+Sistema de Gerenciamento de Vendas
+Descrição
+Este projeto implementa um sistema de gerenciamento de vendas para uma loja, permitindo o armazenamento e a manipulação de informações sobre clientes, produtos e vendas. O objetivo é facilitar a administração eficiente dos dados de vendas e estoque.
+
+Estrutura do Banco de Dados
+O sistema é composto por três tabelas principais:
+
+Clientes: Contém informações sobre os clientes.
+Produtos: Armazena detalhes dos produtos disponíveis na loja.
+Vendas: Registra as vendas realizadas, associando clientes e produtos.
+Funcionalidades
+Cadastro de Clientes e Produtos: Insere novos clientes e produtos no sistema.
+Registro de Vendas: Registra a venda de produtos para clientes, atualizando automaticamente o estoque.
+Consultas: Permite visualizar vendas por cliente, total de vendas por produto, entre outros relatórios.
+Atualização de Dados: Possibilita a atualização das informações dos clientes e do estoque de produtos.
+Deleção de Dados: Suporta a remoção de registros de vendas e clientes.
+Pré-requisitos
+MySQL instalado.
+Como Utilizar
+Clone o repositório e navegue até o diretório do projeto.
+Execute o arquivo SQL para criar o banco de dados e as tabelas
+mysql -u seu_usuario -p < sistema_vendas.sql
+Insira os dados necessários utilizando os comandos INSERT fornecidos no arquivo SQL.
+Realize as consultas e operações conforme desejado.
+Este projeto está licenciado sob a MIT License.
+
