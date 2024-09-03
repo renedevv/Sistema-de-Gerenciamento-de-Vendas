@@ -1,0 +1,61 @@
+CREATE DATABASE sistema_vendas;
+USE sistema_vendas;
+CREATE TABLE Clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(15)
+);
+CREATE TABLE Produtos (
+    id_produto INT AUTO_INCREMENT PRIMARY KEY,
+    nome_produto VARCHAR(100) NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    quantidade_estoque INT NOT NULL
+);
+CREATE TABLE Vendas (
+    id_venda INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT,
+    id_produto INT,
+    quantidade_vendida INT NOT NULL,
+    data_venda DATE NOT NULL,
+    FOREIGN KEY (id_cliente) REFERENCES Clientes(id_cliente),
+    FOREIGN KEY (id_produto) REFERENCES Produtos(id_produto)
+);
+INSERT INTO Clientes (nome, email, telefone) VALUES
+('Ana Souza', 'ana.souza@email.com', '123456789'),
+('Carlos Lima', 'carlos.lima@email.com', '987654321'),
+('Mariana Silva', 'mariana.silva@email.com', '123123123');
+INSERT INTO Produtos (nome_produto, preco, quantidade_estoque) VALUES
+('Notebook', 2500.00, 10),
+('Mouse', 50.00, 100),
+('Teclado', 100.00, 50);
+INSERT INTO Vendas (id_cliente, id_produto, quantidade_vendida, data_venda) VALUES
+(1, 1, 1, '2024-09-01'),
+(2, 2, 2, '2024-09-02'),
+(3, 3, 1, '2024-09-03'),
+(1, 2, 1, '2024-09-04'),
+(2, 1, 1, '2024-09-05');
+SELECT Vendas.id_venda, Clientes.nome AS Nome_Cliente, Produtos.nome_produto AS Nome_Produto, Vendas.quantidade_vendida, Vendas.data_venda
+FROM Vendas
+JOIN Clientes ON Vendas.id_cliente = Clientes.id_cliente
+JOIN Produtos ON Vendas.id_produto = Produtos.id_produto;
+SELECT Vendas.id_venda, Produtos.nome_produto AS Nome_Produto, Vendas.quantidade_vendida, Vendas.data_venda
+FROM Vendas
+JOIN Produtos ON Vendas.id_produto = Produtos.id_produto
+WHERE Vendas.id_cliente = 1;
+SELECT Produtos.nome_produto AS Nome_Produto, SUM(Vendas.quantidade_vendida) AS Total_Vendido
+FROM Vendas
+JOIN Produtos ON Vendas.id_produto = Produtos.id_produto
+GROUP BY Produtos.nome_produto;
+SELECT Produtos.nome_produto AS Nome_Produto, SUM(Vendas.quantidade_vendida) AS Total_Vendido
+FROM Vendas
+JOIN Produtos ON Vendas.id_produto = Produtos.id_produto
+GROUP BY Produtos.nome_produto;
+UPDATE Produtos
+SET quantidade_estoque = quantidade_estoque - 1
+WHERE id_produto = 1;
+UPDATE Clientes
+SET email = 'novo.email@email.com'
+WHERE id_cliente = 2;
+DELETE FROM Vendas WHERE id_venda = 5;
+DELETE FROM Clientes WHERE id_cliente = 2;
